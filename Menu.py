@@ -53,7 +53,7 @@ def main_menu():
         # Affichage menu
         bg = pygame.image.load('assets/wallpaper.jpg')
         screen.blit(bg, (0,0))
-        title=text_format("Sourcecodester", font, 90, (255, 0, 0))
+        title=text_format("Casse-Brique", font, 90, (255, 0, 0))
         if selected=="start":
             text_start=text_format("START", font, 75, (255, 255, 255))
         else:
@@ -73,7 +73,7 @@ def main_menu():
         screen.blit(text_quit, (screen_width/2 - (quit_rect[2]/2), 360))
         pygame.display.update()
         clock.tick(FPS)
-        pygame.display.set_caption("Python - Pygame Simple Main Menu Selection")
+        pygame.display.set_caption("Casse-Brique_Groupe9")
 
 #A mettre dans Main
 main_menu()
