@@ -7,7 +7,7 @@ class Second():
     def play(self):
         # generer la fenetre
         pygame.display.set_caption("Casse-Brique")
-        WINDOW_WIDTH  = 1080
+        WINDOW_WIDTH  = 1040
         WINDOW_HEIGHT = 720
         screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
@@ -27,6 +27,7 @@ class Second():
 
             #Appliquer l'image de la balle
             screen.blit(game.balle.image, game.balle.rect)
+            game.wall.draw(screen)
 
             #Déplacer la balle
             game.balle.deplacement()
