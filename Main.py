@@ -5,7 +5,9 @@ pygame.init()
 
 # generer la fenetre
 pygame.display.set_caption("Casse-Brique")
-screen = pygame.display.set_mode((720, 960))
+WINDOW_WIDTH  = 1080
+WINDOW_HEIGHT = 720
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 #importer l'arrière plan
 background = pygame.image.load('assets/wallpaper.jpg')
@@ -31,7 +33,7 @@ while running:
     game.balle.deplacement()
 
     #verifier si le jouerur veut aller à droite ou a gauche
-    if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x < 640 and not game.pressed.get(pygame.K_LEFT):
+    if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x < 1000 and not game.pressed.get(pygame.K_LEFT):
         game.barre.move_right()
     elif game.pressed.get(pygame.K_LEFT) and game.barre.rect.x > 0 and not game.pressed.get(pygame.K_RIGHT):
         game.barre.move_left()
