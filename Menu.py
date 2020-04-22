@@ -56,7 +56,7 @@ class Start_Menu():
             # Affichage menu
             bg = pygame.image.load('assets/wallpaper.jpg')
             screen.blit(bg, (0,0))
-            title=Start_Menu().text_format("Casse-Brique", font, 90, (255, 0, 0))
+            title=Start_Menu().text_format("Plague-Brique", font, 90, (255, 0, 0))
             if selected=="start":
                 text_start=Start_Menu().text_format("START", font, 75, (255, 255, 255))
             else:
