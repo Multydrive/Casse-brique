@@ -21,7 +21,7 @@ class Wall(pygame.sprite.Group):
                 self.pos_x = 0
                 self.pos_y = self.pos_y + brick.rect.height
 
-            choix = random.randint(0,3)
+            choix = random.randint(0,4)
             if choix == 0:
                 brick = Brick((self.pos_x, self.pos_y))
                 brick.image = pygame.image.load('assets/bleu.jpg')
@@ -37,6 +37,9 @@ class Wall(pygame.sprite.Group):
             elif choix == 3:
                 brick = Brick((self.pos_x, self.pos_y))
                 brick.image = pygame.image.load('assets/us.jpg')
+
+            elif choix == 4:
+                pass
 
             self.add(brick)
             self.pos_x = self.pos_x + brick.rect.width
