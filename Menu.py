@@ -10,9 +10,6 @@ class Start_Menu():
     #Centrer application
     os.environ['SDL_VIDEO_CENTERED'] = '1'
 
-
-
-
     #Affichage
     def text_format(self,message, textFont, textSize, textColor):
         newFont=pygame.font.Font(textFont, textSize)
@@ -20,14 +17,15 @@ class Start_Menu():
 
         return newText
 
-    # Game Framerate
-
-
     # Main Menu
     def main_menu(self):
+
+        # Game Framerate
         clock = pygame.time.Clock()
         FPS=30
+
         font = "assets/Retro.ttf"
+
         #Resolution
         screen_width=800
         screen_height=600
@@ -70,7 +68,7 @@ class Start_Menu():
             start_rect=text_start.get_rect()
             quit_rect=text_quit.get_rect()
 
-            # Text menu
+            # Textes menu
             screen.blit(title, (int(screen_width/2) - int((title_rect[2]/2)), 80))
             screen.blit(text_start, (int(screen_width/2) - (int(start_rect[2]/2)), 300))
             screen.blit(text_quit, (int(screen_width/2) - (int(quit_rect[2]/2)), 360))
@@ -78,7 +76,7 @@ class Start_Menu():
             clock.tick(FPS)
             pygame.display.set_caption("Casse-Brique_Groupe9")
 
-#A mettre dans Main
+
 Start_Menu().main_menu()
 pygame.quit()
 quit()

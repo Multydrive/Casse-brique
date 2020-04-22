@@ -28,10 +28,13 @@ class Balle(pygame.sprite.Sprite):
     def collision_mur_barre(self):
         if self.rect.x < 0:
             self.velocityX = 2
-        elif self.rect.x > 1050:
+        elif self.rect.x > 1010:
             self.velocityX = -2
         elif self.rect.y > 700:
-            self.velocityY = -2
+            self.velocityY = 0
+            self.rect.y = 500
+            self.rect.x = 540
+            print("bas")
         elif self.game.check_collision():
             self.velocityY = -2
         elif self.rect.y < 0:

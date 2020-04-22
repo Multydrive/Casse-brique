@@ -33,7 +33,7 @@ class Second():
             game.balle.deplacement()
 
             #verifier si le jouerur veut aller à droite ou a gauche
-            if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x < 1000 and not game.pressed.get(pygame.K_LEFT):
+            if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x < 960 and not game.pressed.get(pygame.K_LEFT):
                 game.barre.move_right()
             elif game.pressed.get(pygame.K_LEFT) and game.barre.rect.x > 0 and not game.pressed.get(pygame.K_RIGHT):
                 game.barre.move_left()
