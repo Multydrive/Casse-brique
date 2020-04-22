@@ -68,9 +68,9 @@ def main_menu():
         quit_rect=text_quit.get_rect()
 
         # Text menu
-        screen.blit(title, (screen_width/2 - (title_rect[2]/2), 80))
-        screen.blit(text_start, (screen_width/2 - (start_rect[2]/2), 300))
-        screen.blit(text_quit, (screen_width/2 - (quit_rect[2]/2), 360))
+        screen.blit(title, (int(screen_width/2) - int((title_rect[2]/2)), 80))
+        screen.blit(text_start, (int(screen_width/2) - (int(start_rect[2]/2)), 300))
+        screen.blit(text_quit, (int(screen_width/2) - (int(quit_rect[2]/2)), 360))
         pygame.display.update()
         clock.tick(FPS)
         pygame.display.set_caption("Casse-Brique_Groupe9")
