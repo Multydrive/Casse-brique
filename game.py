@@ -9,4 +9,3 @@ class Game:
         self.barre = Barre()
         self.pressed = {}
         self.balle = Balle()
-      

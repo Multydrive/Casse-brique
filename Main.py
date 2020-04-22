@@ -2,11 +2,12 @@ import pygame
 from game import Game
 pygame.init()
 
-#test
 
 # generer la fenetre
 pygame.display.set_caption("Casse-Brique")
-screen = pygame.display.set_mode((1080, 720))
+WINDOW_WIDTH  = 1080
+WINDOW_HEIGHT = 720
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 #importer l'arrière plan
 background = pygame.image.load('assets/wallpaper.jpg')
