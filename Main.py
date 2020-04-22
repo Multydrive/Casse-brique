@@ -12,7 +12,7 @@ class Second():
         screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
         #importer l'arrière plan
-        background = pygame.image.load('assets/background.jpg')
+        background = pygame.image.load('assets/bg.jpg')
         #charger notre jeu
         game = Game()
         running = True
