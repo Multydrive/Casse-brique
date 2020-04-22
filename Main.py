@@ -2,6 +2,7 @@ import pygame
 from game import Game
 pygame.init()
 
+#test
 
 # generer la fenetre
 pygame.display.set_caption("Casse-Brique")
