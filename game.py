@@ -2,6 +2,7 @@ import pygame
 from barre import Barre
 from balle import Balle
 
+
 class Game:
 
     def __init__(self):

@@ -29,13 +29,10 @@ class Balle(pygame.sprite.Sprite):
         if self.rect.x < 0:
             self.velocityX = 2
         elif self.rect.x > 1050:
-            print ("droite")
             self.velocityX = -2
         elif self.rect.y > 700:
-            print ("bas")
             self.velocityY = -2
         elif self.game.check_collision():
             self.velocityY = -2
         elif self.rect.y < 0:
-            print ("haut")
             self.velocityY = 2

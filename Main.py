@@ -1,54 +1,53 @@
 import pygame
 from game import Game
-pygame.init()
 
+class Second():
+    pygame.init()
 
-# generer la fenetre
-pygame.display.set_caption("Casse-Brique")
-WINDOW_WIDTH  = 1080
-WINDOW_HEIGHT = 720
-screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+    def play(self):
+        # generer la fenetre
+        pygame.display.set_caption("Casse-Brique")
+        WINDOW_WIDTH  = 1080
+        WINDOW_HEIGHT = 720
+        screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
-#importer l'arrière plan
-background = pygame.image.load('assets/wallpaper.jpg')
+        #importer l'arrière plan
+        background = pygame.image.load('assets/wallpaper.jpg')
+        #charger notre jeu
+        game = Game()
+        running = True
+        #boucle tant que cette condition est vraie
+        while running:
 
-#charger notre jeu
-game = Game()
+            #Afficher la fenetre
+            screen.blit(background, (0, 0))
 
-running = True
+            #Appliquer l'image de mon joueur
+            screen.blit(game.barre.image, game.barre.rect)
 
-#boucle tant que cette condition est vraie
-while running:
+            #Appliquer l'image de la balle
+            screen.blit(game.balle.image, game.balle.rect)
 
-    #Afficher la fenetre
-    screen.blit(background, (0, 0))
+            #Déplacer la balle
+            game.balle.deplacement()
 
-    #Appliquer l'image de mon joueur
-    screen.blit(game.barre.image, game.barre.rect)
+            #verifier si le jouerur veut aller à droite ou a gauche
+            if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x < 1000 and not game.pressed.get(pygame.K_LEFT):
+                game.barre.move_right()
+            elif game.pressed.get(pygame.K_LEFT) and game.barre.rect.x > 0 and not game.pressed.get(pygame.K_RIGHT):
+                game.barre.move_left()
 
-    #Appliquer l'image de la balle
-    screen.blit(game.balle.image, game.balle.rect)
+            #mettre a jour l'écran
+            pygame.display.flip()
 
-    #Déplacer la balle
-    game.balle.deplacement()
-
-    #verifier si le jouerur veut aller à droite ou a gauche
-    if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x < 1000 and not game.pressed.get(pygame.K_LEFT):
-        game.barre.move_right()
-    elif game.pressed.get(pygame.K_LEFT) and game.barre.rect.x > 0 and not game.pressed.get(pygame.K_RIGHT):
-        game.barre.move_left()
-
-    #mettre a jour l'écran
-    pygame.display.flip()
-
-    #si le joueur ferme cette fenetre
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-            pygame.quit()
-            print("Fermeture du jeu")
-        #detecter si un joueur la che une touche du clavier
-        elif event.type == pygame.KEYDOWN:
-            game.pressed[event.key] = True
-        elif event.type == pygame.KEYUP:
-            game.pressed[event.key] = False
+            #si le joueur ferme cette fenetre
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                    pygame.quit()
+                    print("Fermeture du jeu")
+                #detecter si un joueur la che une touche du clavier
+                elif event.type == pygame.KEYDOWN:
+                    game.pressed[event.key] = True
+                elif event.type == pygame.KEYUP:
+                    game.pressed[event.key] = False
