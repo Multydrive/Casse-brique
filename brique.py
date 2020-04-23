@@ -10,6 +10,7 @@ class Brick(pygame.sprite.Sprite):
 
 class Wall(pygame.sprite.Group):
     def __init__(self):
+        self.i= 0
         pygame.sprite.Group.__init__(self)
         self.wall = []
         trou = 0
@@ -17,12 +18,12 @@ class Wall(pygame.sprite.Group):
         self.pos_y = 30
 
         for x in range(0, 65):
-
             if self.pos_x >= 1040:
                 self.pos_x = 0
                 self.pos_y = self.pos_y + brick.rect.height
-
-            if trou < 20:
+            for brick in self.wall:
+                self.i += 1
+            if trou < 20 and self.i > 0:
                 choix = random.randint(0,4)
             else :
                 choix = random.randint(0,3)

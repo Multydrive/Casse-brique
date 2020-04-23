@@ -16,18 +16,36 @@ class Balle(pygame.sprite.Sprite):
 
     def deplacement(self):
         self.collision_mur_barre()
-        self.rotate()
+        #self.rotate()
         self.rect.x += self.velocityX
         self.rect.y += self.velocityY
 
-    def rotate(self):
+    """def rotate(self):
         self.angle += 2.5
         self.image = pygame.transform.rotozoom(self.origin_image,self.angle, 1)
-        self.rect = self.image.get_rect(center=self.rect.center)
+        self.rect = self.image.get_rect(center=self.rect.center)"""
 
     def collision_mur_barre(self):
         for brick in self.game.wall1.wall:
             if self.game.check_collision(self, brick):
+                 #balle vient de la gauche
+                if  brick.rect.x - self.rect.x - self.rect.width < 0 and brick.rect.x - self.rect.x - self.rect.width > -20 : #and (brick.rect.y < self.rect.y and self.rect.y < brick.rect.y + brick.rect.height):
+                    self.velocityX = -2
+                    print("Tape par la gauche")
+                #balle vient de la droite
+                elif self.rect.x - brick.rect.x - brick.rect.width < 0 and self.rect.x - brick.rect.x - brick.rect.width > -20: #and (brick.rect.y < self.rect.y and self.rect.y < brick.rect.y + brick.rect.height):
+                    self.velocityX = 2
+                    print("tape par la droite")
+                #balle vient d'en haut
+                if brick.rect.y - self.rect.y - self.rect.height < 0 and brick.rect.y - self.rect.y - self.rect.height > -20  :#and (brick.rect.x < self.rect.x and self.rect.x < brick.rect.x + brick.rect.width):
+                    self.velocityY = -2
+                    print("tape par le haut")
+                elif self.rect.y - brick.rect.y - brick.rect.height < 0 and self.rect.y - brick.rect.y - brick.rect.height > -20: #and (brick.rect.x < self.rect.x and self.rect.x < brick.rect.x + brick.rect.width):
+                    self.velocityY = 2
+                    print("tape par le bas")
+                #balle vient d'en bas
+                
+                
                 self.game.wall1.destruction_brique(brick)
         #touche la gauche
         if self.rect.x < 0:

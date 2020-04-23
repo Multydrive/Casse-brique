@@ -1,9 +1,9 @@
 import pygame
 from barre import Barre
 from balle import Balle
-from brique import *
-from Protector import *
-from bonus import *
+from brique import Brick, Wall
+from Protector import protector
+from bonus import Bonus
 
 
 class Game:
@@ -15,8 +15,8 @@ class Game:
         self.all_balles = []
         self.wall1 = Wall()
         self.Protector = protector()
-        self.all_bonus = pygame.sprite.Group()
-        self.type_bonus = Bonus()
+        self.all_bonus = []
+        #self.type_bonus = Bonus(self)
 
     def lancer_balle(self):
         self.balle = Balle(self)
