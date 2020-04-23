@@ -27,12 +27,12 @@ class Second():
         #boucle tant que cette condition est vraie
 
         while running:
-            while pause == False:
+            """while pause == False:
                 envoie = 1000
                 for event in pygame.event.get():
                     if event.type==KEYDOWN:
                         if event.key==K_ESCAPE:
-                            pause = True
+                            pause = True"""
         
             temps+=1/60
             tps=str("%02d mn %02d sec %02d" % (int(temps)//60, int(temps)%60, (temps*100)%100))
@@ -137,9 +137,24 @@ class Second():
                     if event.key == pygame.K_SPACE:
                         game.balle.fixe = 0
                     if event.key == pygame.K_ESCAPE:
-                        pygame.time.wait(envoie)
-                        pause = False
-                        print("test")
+                        escape = pygame.image.load('assets/escape.png')
+                        escape = pygame.transform.scale(escape, (300,50 ))
+                        escapes = escape.get_rect()
+                        escapes.x = 540
+                        escapes.y = 360
+                        pose = True
+                        while pose:
+                            screen.blit(escape,escapes)
+                            pygame.display.flip()
+                            for event in pygame.event.get():
+                                if event.type == pygame.QUIT:
+                                        running = False
+                                        pose= False
+                                        pygame.quit()
+                                elif event.type == pygame.KEYDOWN:    
+                                    if event.key == pygame.K_ESCAPE:
+                                        pose = False
+        
                 elif event.type == pygame.KEYUP:
                     game.pressed[event.key] = False
 
