@@ -54,7 +54,7 @@ class Balle(pygame.sprite.Sprite):
         # touche le bas
         elif self.rect.y > 670:
             self.game.all_balles.remove(self)
-            print("Vie restant :" +  str(self.game.balle_vie))
+            self.game.balle_vie -= 1
             self.game.balle_actuelle = 0
         #touche la barre principale
         elif self.game.check_collision(self,self.game.barre):

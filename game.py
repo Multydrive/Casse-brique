@@ -27,7 +27,6 @@ class Game:
             self.balle = Balle(self)
             self.all_balles.append(self.balle)
             self.balle_actuelle = 1
-            self.balle_vie -= 1
             print(self.balle_vie)
         elif self.balle_actuelle == 1:
             print("Balle deja existante")
@@ -35,10 +34,8 @@ class Game:
             print("Plus de vie")
 
     def spawn_bonus(self, x, y):
-        self.choix = random.randint(0,1)
-        if self.choix > 1:
-            print("raté")
-        elif self.choix == 0:
+        self.choix = random.randint(0,8)
+        if self.choix == 0:
             self.image = pygame.image.load('assets/BonusLigne.png')
             self.bonus = Bonus(self, x, y,self.image)
             self.all_bonus.append(self.bonus)
@@ -48,6 +45,11 @@ class Game:
             self.bonus = Bonus(self, x, y,self.image)
             self.all_bonus.append(self.bonus)
             self.bonus.different = 0
+        elif self.choix == 2:
+            self.image = pygame.image.load('assets/malus.png')
+            self.bonus = Bonus(self, x, y,self.image)
+            self.all_bonus.append(self.bonus)
+            self.bonus.different = 2
 
     def check_collision(self, sprite1, sprite2):
         return pygame.sprite.collide_rect(sprite1, sprite2)

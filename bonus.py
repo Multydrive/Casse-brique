@@ -23,6 +23,10 @@ class Bonus (pygame.sprite.Sprite):
             elif self.different == 0:
                 self.bonus_vie()
             self.game.all_bonus.remove(self)
+        elif self.game.check_collision(self, self.game.barre):
+            if self.different == 2:
+                self.malus_vie()
+            self.game.all_bonus.remove(self)
 
     def bonus_ligne(self):
         for brick in self.game.wall1.wall:
@@ -35,6 +39,10 @@ class Bonus (pygame.sprite.Sprite):
         else:
             print("Trop de vie")
             self.game.balle_vie = 99
-
     
+    def malus_vie(self):
+        if self.game.balle_vie <= 0:
+            self.game.balle_vie =0
+        else:
+            self.game.balle_vie -= 1    
 
