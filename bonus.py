@@ -8,8 +8,7 @@ class Bonus (pygame.sprite.Sprite):
         self.image = pygame.transform.rotozoom(self.image, 0, 0.08)
         self.rect = self.image.get_rect()
         self.velocity = 2
-        self.rect.y = 0
-
+        
     def fall(self):
         self.rect.y += self.velocity
 

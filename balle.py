@@ -41,21 +41,12 @@ class Balle(pygame.sprite.Sprite):
                 if brick.rect.y - self.rect.y - self.rect.height < 0 and brick.rect.y - self.rect.y - self.rect.height > -20  :#and (brick.rect.x < self.rect.x and self.rect.x < brick.rect.x + brick.rect.width):
                     self.velocityY = -2
                     print("tape par le haut")
+                #balle vient d'en
                 elif self.rect.y - brick.rect.y - brick.rect.height < 0 and self.rect.y - brick.rect.y - brick.rect.height > -20: #and (brick.rect.x < self.rect.x and self.rect.x < brick.rect.x + brick.rect.width):
                     self.velocityY = 2
                     print("tape par le bas")
-                #balle vient d'en bas
-                
-                
                 self.game.wall1.destruction_brique(brick)
-                if brick.rect.x < self.rect.x:
-                    self.velocityX = 2
-                elif brick.rect.x > self.rect.x:
-                    self.velocityX = -2
-                if brick.rect.y < self.rect.y:
-                    self.velocityY = -2
-                elif brick.rect.y > self.rect.y:
-                    self.velocityY = 2
+                
 
         #touche la gauche
         if self.rect.x < 0:
