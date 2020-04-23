@@ -17,14 +17,14 @@ class Balle(pygame.sprite.Sprite):
 
     def deplacement(self):
         self.collision_mur_barre()
-        #self.rotate()
+        self.rotate()
         self.rect.x += self.velocityX
         self.rect.y += self.velocityY
 
-    """def rotate(self):
+    def rotate(self):
         self.angle += 2.5
         self.image = pygame.transform.rotozoom(self.origin_image,self.angle, 1)
-        self.rect = self.image.get_rect(center=self.rect.center)"""
+        self.rect = self.image.get_rect(center=self.rect.center)
 
     def collision_mur_barre(self):
         for brick in self.game.wall1.wall:
@@ -43,7 +43,7 @@ class Balle(pygame.sprite.Sprite):
                     self.velocityY = 4
                 self.game.wall1.destruction_brique(brick)
                 self.game.spawn_bonus(brick.rect.x, brick.rect.y)
-                
+
 
         #touche la gauche
         if self.rect.x < 0:
