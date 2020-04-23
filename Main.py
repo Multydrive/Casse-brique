@@ -7,6 +7,8 @@ class Second():
 
     def play(self):
         # generer la fenetre
+        pause = True
+        envoie = 0
         pygame.display.set_caption("Casse-Brique")
         WINDOW_WIDTH  = 1040
         WINDOW_HEIGHT = 720
@@ -29,6 +31,12 @@ class Second():
         running = True
         #boucle tant que cette condition est vraie
         while running:
+            while pause == False:
+                envoie = 1000
+                for event in pygame.event.get():
+                    if event.type==KEYDOWN:
+                        if event.key==K_ESCAPE:
+                            pause = True
             temps+=1/60
             tps=str("%02d mn %02d sec %02d" % (int(temps)//60, int(temps)%60, (temps*100)%100))
             font = "assets/DS-DIGI.TTF"
@@ -80,6 +88,7 @@ class Second():
             pygame.display.flip()
             clock.tick(fps)
 
+
             #si le joueur ferme cette fenetre
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -90,6 +99,10 @@ class Second():
                     game.pressed[event.key] = True
                     if event.key == pygame.K_SPACE:
                         game.lancer_balle()
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.time.wait(envoie)
+                        pause = False
+                        print("test")
                 elif event.type == pygame.KEYUP:
                     game.pressed[event.key] = False
 
