@@ -33,9 +33,17 @@ class Second():
             tps=str("%02d mn %02d sec %02d" % (int(temps)//60, int(temps)%60, (temps*100)%100))
             font = "assets/DS-DIGI.TTF"
             chronos=text_format(tps, font, 20, (0, 0, 0))
+            #score
+            new_points = game.points
+            new_points = str(new_points)
+            score=text_format("SCORE : "+ new_points, font, 25, (0, 0, 0))
+            #Vie
+            vies=text_format("VIES : "+ str(game.balle_vie) , font, 25, (0, 0, 0))
             #Afficher la fenetre
             screen.blit(background, (0, 0))
             screen.blit(chronos,(900,10))
+            screen.blit(score,(470,5))
+            screen.blit(vies,(30,5))
             #Appliquer l'image de mon joueur
             for balle in game.all_balles:
                 screen.blit(balle.image, balle.rect)

@@ -3,13 +3,14 @@ import random
 class Brick(pygame.sprite.Sprite):
     def __init__(self, position: tuple):
         pygame.sprite.Sprite.__init__(self)
-
         self.image        = pygame.image.load('assets/bleu.jpg')
         self.rect         = self.image.get_rect()
         self.rect.topleft = position
 
-class Wall(pygame.sprite.Group):
-    def __init__(self):
+class Wall(pygame.sprite.Sprite):
+    def __init__(self, game):
+        super().__init__()
+        self.game = game
         self.i= 0
         pygame.sprite.Group.__init__(self)
         self.wall = []
@@ -52,3 +53,4 @@ class Wall(pygame.sprite.Group):
             self.pos_x = self.pos_x + brick.rect.width
     def destruction_brique(self,brick):
         self.wall.remove(brick)
+        self.game.points += 10

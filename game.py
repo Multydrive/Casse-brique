@@ -14,11 +14,12 @@ class Game:
         self.barre = Barre()
         self.pressed = {}
         self.all_balles = []
-        self.wall1 = Wall()
+        self.wall1 = Wall(self)
         self.Protector = protector()
         self.balle_actuelle = 0
         self.balle_vie = 3
         self.all_bonus = []
+        self.points = 0
         #self.type_bonus = Bonus(self)
 
     def lancer_balle(self):
@@ -31,8 +32,8 @@ class Game:
         elif self.balle_actuelle == 1:
             print("Balle deja existante")
         elif self.balle_vie == 0:
-            print("Plus de vie")  
-              
+            print("Plus de vie")
+
     def spawn_bonus(self, x, y):
         self.choix = random.randint(0,1)
         if self.choix > 1:
