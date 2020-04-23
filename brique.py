@@ -48,7 +48,7 @@ class Wall(pygame.sprite.Group):
                 trou += 1
                 pass
 
-            
+
             self.pos_x = self.pos_x + brick.rect.width
     def destruction_brique(self,brick):
         self.wall.remove(brick)

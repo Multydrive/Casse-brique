@@ -1,4 +1,5 @@
 import pygame
+from brique import *
 
 class Balle(pygame.sprite.Sprite):
     def __init__(self, game):
@@ -6,8 +7,8 @@ class Balle(pygame.sprite.Sprite):
         self.image = pygame.image.load('assets/virus.png')
         self.image = pygame.transform.rotozoom(self.image, 0, 0.08)
         self.rect = self.image.get_rect()
-        self.rect.x = 350
-        self.rect.y = 450
+        self.rect.x = 470
+        self.rect.y = 600
         self.velocityX = -2
         self.velocityY = -2
         self.origin_image = self.image
@@ -47,6 +48,15 @@ class Balle(pygame.sprite.Sprite):
                 
                 
                 self.game.wall1.destruction_brique(brick)
+                if brick.rect.x < self.rect.x:
+                    self.velocityX = 2
+                elif brick.rect.x > self.rect.x:
+                    self.velocityX = -2
+                if brick.rect.y < self.rect.y:
+                    self.velocityY = -2
+                elif brick.rect.y > self.rect.y:
+                    self.velocityY = 2
+
         #touche la gauche
         if self.rect.x < 0:
             self.velocityX = 2
