@@ -6,7 +6,7 @@ class Bonus (pygame.sprite.Sprite):
         super().__init__()
         self.game = game
         self.image = image
-        self.image = pygame.transform.scale(self.image, (105,85))
+        self.image = pygame.transform.scale(self.image, (85,65))
         self.rect = self.image.get_rect()
         self.velocity = 5
         self.rect.x = x - 18
@@ -44,5 +44,5 @@ class Bonus (pygame.sprite.Sprite):
         if self.game.balle_vie <= 0:
             self.game.balle_vie =0
         else:
-            self.game.balle_vie -= 1    
+            self.game.balle_vie -= 1 
 

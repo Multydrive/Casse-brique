@@ -7,19 +7,25 @@ class Balle(pygame.sprite.Sprite):
         self.image = pygame.image.load('assets/virus.png')
         self.image = pygame.transform.rotozoom(self.image, 0, 0.08)
         self.rect = self.image.get_rect()
-        self.rect.x = 470
-        self.rect.y = 600
-        self.velocityX = -4
-        self.velocityY = -4
+        self.rect.x = self.game.barre.rect.x + self.rect.width/2
+        self.rect.y = self.game.barre.rect.y - self.rect.height
+        self.vit = 4
+        self.velocityX = self.vit
+        self.velocityY = self.vit
         self.origin_image = self.image
         self.angle = 0
+        self.fixe = 1
 
 
     def deplacement(self):
-        self.collision_mur_barre()
-        self.rotate()
-        self.rect.x += self.velocityX
-        self.rect.y += self.velocityY
+        if self.fixe == 0:
+            self.collision_mur_barre()
+            self.rotate()
+            self.rect.x += self.velocityX
+            self.rect.y += self.velocityY
+        elif self.fixe == 1:
+            self.rect.x = self.game.barre.rect.x + self.rect.width/2
+            self.rect.y = self.game.barre.rect.y - self.rect.height
 
     def rotate(self):
         self.angle += 2.5
@@ -31,34 +37,35 @@ class Balle(pygame.sprite.Sprite):
             if self.game.check_collision(self, brick):
                  #balle vient de la gauche
                 if  brick.rect.x - self.rect.x - self.rect.width < 0 and brick.rect.x - self.rect.x - self.rect.width > -20 :
-                    self.velocityX = -4
+                    self.velocityX = - self.vit
                 #balle vient de la droite
                 elif self.rect.x - brick.rect.x - brick.rect.width < 0 and self.rect.x - brick.rect.x - brick.rect.width > -20:
-                    self.velocityX = 4
+                    self.velocityX = self.vit
                 #balle vient d'en haut
                 if brick.rect.y - self.rect.y - self.rect.height < 0 and brick.rect.y - self.rect.y - self.rect.height > -20:
-                    self.velocityY = -4
+                    self.velocityY = - self.vit
                 #balle vient d'en
                 elif self.rect.y - brick.rect.y - brick.rect.height < 0 and self.rect.y - brick.rect.y - brick.rect.height > -20:
-                    self.velocityY = 4
+                    self.velocityY = self.vit
                 self.game.wall1.destruction_brique(brick)
                 self.game.spawn_bonus(brick.rect.x, brick.rect.y)
 
 
         #touche la gauche
         if self.rect.x < 0:
-            self.velocityX = 4
+            self.velocityX = self.vit
         #touche la droite
         elif self.rect.x > 1010:
-            self.velocityX = -4
+            self.velocityX = - self.vit
         # touche le bas
         elif self.rect.y > 670:
             self.game.all_balles.remove(self)
             self.game.balle_vie -= 1
-            self.game.balle_actuelle = 0
+            self.game.spawn_balle()
+            self.fixe = 1
         #touche la barre principale
         elif self.game.check_collision(self,self.game.barre):
-            self.velocityY = -4
+            self.velocityY = - self.vit
         #touche le haut
         elif self.rect.y < 35:
-            self.velocityY = 4
+            self.velocityY = self.vit

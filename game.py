@@ -16,22 +16,16 @@ class Game:
         self.all_balles = []
         self.wall1 = Wall(self)
         self.Protector = protector()
-        self.balle_actuelle = 0
         self.balle_vie = 3
         self.all_bonus = []
         self.points = 0
+        self.spawn_balle()
         #self.type_bonus = Bonus(self)
 
-    def lancer_balle(self):
-        if self.balle_actuelle == 0 and self.balle_vie > 0:
+    def spawn_balle(self):
+        if self.balle_vie > 0:
             self.balle = Balle(self)
             self.all_balles.append(self.balle)
-            self.balle_actuelle = 1
-            print(self.balle_vie)
-        elif self.balle_actuelle == 1:
-            print("Balle deja existante")
-        elif self.balle_vie == 0:
-            print("Plus de vie")
 
     def spawn_bonus(self, x, y):
         self.choix = random.randint(0,8)
