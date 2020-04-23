@@ -4,7 +4,6 @@ from pygame.locals import *
 
 class Second():
     pygame.init()
-
     def play(self):
         # generer la fenetre
         pause = True
@@ -20,11 +19,7 @@ class Second():
         game = Game()
 
         #Affichage
-        def text_format(message, textFont, textSize, textColor):
-            newFont=pygame.font.Font(textFont, textSize)
-            newText=newFont.render(message, 0, textColor)
 
-            return newText
         clock = pygame.time.Clock()
         fps= 60
         temps=0
@@ -37,16 +32,19 @@ class Second():
                     if event.type==KEYDOWN:
                         if event.key==K_ESCAPE:
                             pause = True
+
             temps+=1/60
             tps=str("%02d mn %02d sec %02d" % (int(temps)//60, int(temps)%60, (temps*100)%100))
             font = "assets/DS-DIGI.TTF"
-            chronos=text_format(tps, font, 20, (0, 0, 0))
+            chronos= Second().text_format(tps, font, 20, (0, 0, 0))
+
+            Second().end_menu(game.points, tps, font, screen)
             #score
             new_points = game.points
             new_points = str(new_points)
-            score=text_format("SCORE : "+ new_points, font, 25, (0, 0, 0))
+            score= Second().text_format("SCORE : "+ new_points, font, 25, (0, 0, 0))
             #Vie
-            vies=text_format("VIES : "+ str(game.balle_vie) , font, 25, (0, 0, 0))
+            vies= Second().text_format("VIES : "+ str(game.balle_vie) , font, 25, (0, 0, 0))
             #Afficher la fenetre
             screen.blit(background, (0, 0))
             screen.blit(chronos,(900,10))
@@ -88,7 +86,6 @@ class Second():
             pygame.display.flip()
             clock.tick(fps)
 
-
             #si le joueur ferme cette fenetre
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -108,3 +105,23 @@ class Second():
 
             for bonus in game.all_bonus:
                 bonus.fall()
+
+    def text_format(self, message, textFont, textSize, textColor):
+        newFont=pygame.font.Font(textFont, textSize)
+        newText=newFont.render(message, 0, textColor)
+        return newText
+
+    def end_menu(self, point, tps, font, screen):
+        score_go= Second().text_format("SCORE : "+ str(point), font, 50, (0, 0, 0))
+        chronos_go= Second().text_format("TEMPS : " + str(tps), font, 50, (0, 0, 0))
+        again_go= Second().text_format("Pour continuer appuyer sur espace", font, 50, (0 ,0 ,0))
+        bg_go = pygame.image.load('assets/wallpaper.jpg')
+
+        score_go_rect=score_go.get_rect()
+        chronos_go_rect=chronos_go.get_rect()
+        again_go_rect=again_go.get_rect()
+
+        screen.blit(bg_go,(0,0))
+        screen.blit(score_go,(int(1040/2) - int((score_go_rect[2]/2)),260))
+        screen.blit(chronos_go,(int(1040/2) - int((chronos_go_rect[2]/2)),360))
+        screen.blit(again_go,(int(1040/2) - int((again_go_rect[2]/2)),460))
