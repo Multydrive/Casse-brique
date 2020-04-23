@@ -1,5 +1,6 @@
 import pygame
 from game import Game
+from pygame.locals import *
 
 class Second():
     pygame.init()
@@ -15,13 +16,26 @@ class Second():
         background = pygame.image.load('assets/bg.jpg')
         #charger notre jeu
         game = Game()
+
+        #Affichage
+        def text_format(message, textFont, textSize, textColor):
+            newFont=pygame.font.Font(textFont, textSize)
+            newText=newFont.render(message, 0, textColor)
+
+            return newText
+        clock = pygame.time.Clock()
+        fps= 60
+        temps=0
         running = True
         #boucle tant que cette condition est vraie
         while running:
-
+            temps+=1/60
+            tps=str("%02d mn %02d sec %02d" % (int(temps)//60, int(temps)%60, (temps*100)%100))
+            font = "assets/DS-DIGI.TTF"
+            chronos=text_format(tps, font, 20, (0, 0, 0))
             #Afficher la fenetre
             screen.blit(background, (0, 0))
-
+            screen.blit(chronos,(900,10))
             #Appliquer l'image de mon joueur
             for balle in game.all_balles:
                 screen.blit(balle.image, balle.rect)
@@ -39,7 +53,7 @@ class Second():
                 screen.blit(brick.image,brick.rect)
 
             #Déplacer la balle
-            for balle in game.all_balles: 
+            for balle in game.all_balles:
                 balle.deplacement()
 
             #verifier si le joueur veut aller à droite ou a gauche
@@ -56,6 +70,7 @@ class Second():
 
             #mettre a jour l'écran
             pygame.display.flip()
+            clock.tick(fps)
 
             #si le joueur ferme cette fenetre
             for event in pygame.event.get():
