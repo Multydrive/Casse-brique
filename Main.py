@@ -23,7 +23,8 @@ class Second():
             screen.blit(background, (0, 0))
 
             #Appliquer l'image de mon joueur
-            screen.blit(game.barre.image, game.barre.rect)
+            for balle in game.all_balles:
+                screen.blit(balle.image, balle.rect)
 
             #Appliquer l'image de mon joueur2
             screen.blit(game.Protector.image, game.Protector.rect)
@@ -32,13 +33,13 @@ class Second():
             game.all_bonus.draw(screen)
 
             #Appliquer l'image de la balle
-            screen.blit(game.balle.image, game.balle.rect)
-
-            #Affiche les briques
-            game.wall.draw(screen)
+            screen.blit(game.barre.image, game.barre.rect)
+            for brick in game.wall1.wall:
+                screen.blit(brick.image,brick.rect)
 
             #Déplacer la balle
-            game.balle.deplacement()
+            for balle in game.all_balles: 
+                balle.deplacement()
 
             #verifier si le joueur veut aller à droite ou a gauche
             if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x < 960 and not game.pressed.get(pygame.K_LEFT):
@@ -64,6 +65,8 @@ class Second():
                 #detecter si un joueur la che une touche du clavier
                 elif event.type == pygame.KEYDOWN:
                     game.pressed[event.key] = True
+                    if event.key == pygame.K_SPACE:
+                        game.lancer_balle()
                 elif event.type == pygame.KEYUP:
                     game.pressed[event.key] = False
 

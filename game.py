@@ -12,11 +12,15 @@ class Game:
         #générer le joueur
         self.barre = Barre()
         self.pressed = {}
-        self.balle = Balle(self)
-        self.wall = Wall()
+        self.all_balles = []
+        self.wall1 = Wall()
         self.Protector = protector()
         self.all_bonus = pygame.sprite.Group()
         self.type_bonus = Bonus()
 
-    def check_collision(self):
-        return pygame.sprite.collide_rect(self.balle, self.barre)
+    def lancer_balle(self):
+        self.balle = Balle(self)
+        self.all_balles.append(self.balle)
+
+    def check_collision(self, sprite1, sprite2):
+        return pygame.sprite.collide_rect(sprite1, sprite2)

@@ -11,7 +11,7 @@ class Brick(pygame.sprite.Sprite):
 class Wall(pygame.sprite.Group):
     def __init__(self):
         pygame.sprite.Group.__init__(self)
-
+        self.wall = []
         trou = 0
         self.pos_x = 0
         self.pos_y = 30
@@ -30,22 +30,24 @@ class Wall(pygame.sprite.Group):
             if choix == 0:
                 brick = Brick((self.pos_x, self.pos_y))
                 brick.image = pygame.image.load('assets/bleu.jpg')
-
+                self.wall.append(brick)
             elif choix == 1:
                 brick = Brick((self.pos_x, self.pos_y))
                 brick.image = pygame.image.load('assets/vert.jpg')
-
+                self.wall.append(brick)
             elif choix == 2:
                 brick = Brick((self.pos_x, self.pos_y))
                 brick.image = pygame.image.load('assets/rouge.jpg')
-
+                self.wall.append(brick)
             elif choix == 3:
                 brick = Brick((self.pos_x, self.pos_y))
                 brick.image = pygame.image.load('assets/us.jpg')
-
+                self.wall.append(brick)
             elif choix == 4:
                 trou += 1
                 pass
 
-            self.add(brick)
+            
             self.pos_x = self.pos_x + brick.rect.width
+    def destruction_brique(self,brick):
+        self.wall.remove(brick)
