@@ -14,7 +14,7 @@ class Wall(pygame.sprite.Group):
 
         trou = 0
         self.pos_x = 0
-        self.pos_y = 20
+        self.pos_y = 30
 
         for x in range(0, 65):
 

@@ -7,7 +7,7 @@ class Start_Menu():
     #Initialisation
     pygame.init()
 
-    #Centrer application
+    #Centrer menu
     os.environ['SDL_VIDEO_CENTERED'] = '1'
 
     #Affichage
@@ -60,9 +60,9 @@ class Start_Menu():
             else:
                 text_start =Start_Menu().text_format("START", font, 75, (0, 0, 0))
             if selected=="quit":
-                text_quit=Start_Menu().text_format("QUIT", font, 75, (255, 255, 255))
+                text_quit=Start_Menu().text_format("QUITTER", font, 75, (255, 255, 255))
             else:
-                text_quit = Start_Menu().text_format("QUIT", font, 75, (0, 0, 0))
+                text_quit = Start_Menu().text_format("QUITTER", font, 75, (0, 0, 0))
 
             title_rect=title.get_rect()
             start_rect=text_start.get_rect()

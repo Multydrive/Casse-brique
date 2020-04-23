@@ -9,7 +9,7 @@ class Barre(pygame.sprite.Sprite):
         self.velocity = 5
         self.image = pygame.image.load('assets/barre.jpg').convert()
         self.rect = self.image.get_rect()
-        self.rect.x = 540
+        self.rect.x = 500
         self.rect.y = 650
 
     def move_right(self):

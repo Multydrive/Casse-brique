@@ -26,16 +26,21 @@ class Balle(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=self.rect.center)
 
     def collision_mur_barre(self):
+        #touche la gauche
         if self.rect.x < 0:
             self.velocityX = 2
+        #touche la droite
         elif self.rect.x > 1010:
             self.velocityX = -2
+        # touche le bas
         elif self.rect.y > 700:
             self.velocityY = 0
             self.rect.y = 500
             self.rect.x = 540
             print("bas")
+        #touche la barre principale
         elif self.game.check_collision():
             self.velocityY = -2
-        elif self.rect.y < 0:
+        #touche le haut
+        elif self.rect.y < 35:
             self.velocityY = 2
