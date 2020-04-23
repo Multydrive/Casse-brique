@@ -14,18 +14,21 @@ class Game:
         self.barre = Barre()
         self.pressed = {}
         self.all_balles = []
-        self.wall1 = Wall(self)
         self.Protector = protector()
         self.balle_vie = 3
         self.all_bonus = []
         self.points = 0
         self.spawn_balle()
+        self.spawn_mur()
         #self.type_bonus = Bonus(self)
 
     def spawn_balle(self):
         if self.balle_vie > 0:
             self.balle = Balle(self)
             self.all_balles.append(self.balle)
+    def spawn_mur(self):
+        self.wall1 = Wall(self)
+        
 
     def spawn_bonus(self, x, y):
         self.choix = random.randint(0,8)

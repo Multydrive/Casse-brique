@@ -11,6 +11,7 @@ class Second():
         pygame.display.set_caption("Casse-Brique")
         WINDOW_WIDTH  = 1040
         WINDOW_HEIGHT = 720
+        i=0
         screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
         #importer l'arrière plan
@@ -38,7 +39,7 @@ class Second():
             font = "assets/DS-DIGI.TTF"
             chronos= Second().text_format(tps, font, 20, (0, 0, 0))
 
-            Second().end_menu(game.points, tps, font, screen)
+            #Second().end_menu(game.points, tps, font, screen)
             #score
             new_points = game.points
             new_points = str(new_points)
@@ -64,11 +65,17 @@ class Second():
             #Appliquer l'image de la balle
             screen.blit(game.barre.image, game.barre.rect)
             for brick in game.wall1.wall:
-                screen.blit(brick.image,brick.rect)
+                    screen.blit(brick.image,brick.rect)
 
             #Déplacer la balle
             for balle in game.all_balles:
                 balle.deplacement()
+            #Mur vide
+            i = len(game.wall1.wall)
+            if i == 0:
+                del game.wall1
+                game.spawn_mur()
+            
 
             #verifier si le joueur veut aller à droite ou a gauche
             if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x + game.barre.rect.width < screen.get_width() and not game.pressed.get(pygame.K_LEFT):
@@ -95,7 +102,7 @@ class Second():
                 elif event.type == pygame.KEYDOWN:
                     game.pressed[event.key] = True
                     if event.key == pygame.K_SPACE:
-                        game.lancer_balle()
+                        game.balle.fixe = 0
                     if event.key == pygame.K_ESCAPE:
                         pygame.time.wait(envoie)
                         pause = False
