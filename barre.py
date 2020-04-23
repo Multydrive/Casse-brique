@@ -7,7 +7,7 @@ class Barre(pygame.sprite.Sprite):
         self.health = 3
         self.max_health = 3
         self.velocity = 5
-        self.image = pygame.image.load('assets/barre.jpg').convert()
+        self.image = pygame.image.load('assets/barre.jpg')
         self.rect = self.image.get_rect()
         self.rect.x = 500
         self.rect.y = 650

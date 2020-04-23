@@ -25,18 +25,32 @@ class Second():
             #Appliquer l'image de mon joueur
             screen.blit(game.barre.image, game.barre.rect)
 
+            #Appliquer l'image de mon joueur2
+            screen.blit(game.Protector.image, game.Protector.rect)
+
+            #Appliquer l'image des bonus
+            game.all_bonus.draw(screen)
+
             #Appliquer l'image de la balle
             screen.blit(game.balle.image, game.balle.rect)
+
+            #Affiche les briques
             game.wall.draw(screen)
 
             #Déplacer la balle
             game.balle.deplacement()
 
-            #verifier si le jouerur veut aller à droite ou a gauche
+            #verifier si le joueur veut aller à droite ou a gauche
             if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x < 960 and not game.pressed.get(pygame.K_LEFT):
                 game.barre.move_right()
             elif game.pressed.get(pygame.K_LEFT) and game.barre.rect.x > 0 and not game.pressed.get(pygame.K_RIGHT):
                 game.barre.move_left()
+
+            #verifier si le second joueur veut aller à droite ou a gauche
+            if game.pressed.get(pygame.K_f) and game.Protector.rect.x < 1000 and not game.pressed.get(pygame.K_s):
+                game.Protector.move_right()
+            elif game.pressed.get(pygame.K_s) and game.Protector.rect.x > 0  and not game.pressed.get(pygame.K_f):
+                game.Protector.move_left()
 
             #mettre a jour l'écran
             pygame.display.flip()
@@ -52,3 +66,9 @@ class Second():
                     game.pressed[event.key] = True
                 elif event.type == pygame.KEYUP:
                     game.pressed[event.key] = False
+
+            #applique l'image des bonus
+            game.all_bonus.draw(screen)
+
+            for bonus in game.all_bonus:
+                bonus.fall()
