@@ -18,7 +18,7 @@ class Wall(pygame.sprite.Sprite):
         self.pos_x = 0
         self.pos_y = 30
 
-        for x in range(0, 4):
+        for x in range(0, 65):
             if self.pos_x >= 1040:
                 self.pos_x = 0
                 self.pos_y = self.pos_y + brick.rect.height

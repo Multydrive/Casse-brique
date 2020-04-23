@@ -20,12 +20,12 @@ class Second():
         game = Game()
 
         #Affichage
-
         clock = pygame.time.Clock()
         fps= 60
         temps=0
         running = True
         #boucle tant que cette condition est vraie
+
         while running:
             while pause == False:
                 envoie = 1000
@@ -33,12 +33,12 @@ class Second():
                     if event.type==KEYDOWN:
                         if event.key==K_ESCAPE:
                             pause = True
-
+        
             temps+=1/60
             tps=str("%02d mn %02d sec %02d" % (int(temps)//60, int(temps)%60, (temps*100)%100))
             font = "assets/DS-DIGI.TTF"
             chronos= Second().text_format(tps, font, 20, (0, 0, 0))
-
+    
             #Second().end_menu(game.points, tps, font, screen)
             #score
             new_points = game.points
@@ -51,6 +51,38 @@ class Second():
             screen.blit(chronos,(900,10))
             screen.blit(score,(470,5))
             screen.blit(vies,(30,5))
+
+            if game.balle_vie == 0:
+                turning = True
+                click = False
+                game.loose()                
+                while turning:                 
+                    pygame.draw.rect(screen,(255,255,255), game.rectangle_blanc)
+                    pygame.draw.rect(screen, (255,255,255), game.button_1)
+                    pygame.draw.rect(screen, (255,0,0), game.button_2)
+                    screen.blit(game.option, game.options)
+                    screen.blit(game.exit, game.exits)
+                    pygame.display.flip()
+                    mx, my = pygame.mouse.get_pos()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            running = False
+                            turning= False
+                            pygame.quit()
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            if event.button == 1:
+                                click = True
+                    if click :
+                        if game.button_1.collidepoint((mx, my)):
+                            del game
+                            game = Game()
+                            click=False
+                            turning = False    
+                        elif game.button_2.collidepoint((mx, my)):
+                            running= False
+                            click=False 
+                            turning = False 
+
             #Appliquer l'image de mon joueur
             for balle in game.all_balles:
                 screen.blit(balle.image, balle.rect)
@@ -66,6 +98,7 @@ class Second():
             screen.blit(game.barre.image, game.barre.rect)
             for brick in game.wall1.wall:
                     screen.blit(brick.image,brick.rect)
+                
 
             #Déplacer la balle
             for balle in game.all_balles:
