@@ -28,8 +28,8 @@ class Start_Menu():
         font = "assets/Retro.ttf"
 
         #Resolution
-        screen_width=800
-        screen_height=600
+        screen_width=1040
+        screen_height=720
 
         screen=pygame.display.set_mode((screen_width, screen_height))
         menu=True
@@ -57,11 +57,11 @@ class Start_Menu():
             screen.blit(bg, (0,0))
             title=Start_Menu().text_format("Plague-Brique", font, 90, (255, 0, 0))
             if selected=="start":
-                text_start=Start_Menu().text_format("START", font, 75, (255, 255, 255))
+                text_start=Start_Menu().text_format("START", font, 75, (239, 216, 7))
             else:
                 text_start =Start_Menu().text_format("START", font, 75, (0, 0, 0))
             if selected=="quit":
-                text_quit=Start_Menu().text_format("QUIT", font, 75, (255, 255, 255))
+                text_quit=Start_Menu().text_format("QUIT", font, 75, (239, 216, 7))
             else:
                 text_quit = Start_Menu().text_format("QUIT", font, 75, (0, 0, 0))
 
@@ -70,9 +70,9 @@ class Start_Menu():
             quit_rect=text_quit.get_rect()
 
             # Textes menu
-            screen.blit(title, (int(screen_width/2) - int((title_rect[2]/2)), 80))
-            screen.blit(text_start, (int(screen_width/2) - (int(start_rect[2]/2)), 300))
-            screen.blit(text_quit, (int(screen_width/2) - (int(quit_rect[2]/2)), 360))
+            screen.blit(title, (int(screen_width/2) - int((title_rect[2]/2)), 180))
+            screen.blit(text_start, (int(screen_width/2) - (int(start_rect[2]/2)), 360))
+            screen.blit(text_quit, (int(screen_width/2) - (int(quit_rect[2]/2)), 420))
             pygame.display.update()
             clock.tick(FPS)
             pygame.display.set_caption("Casse-Brique_Groupe9")
