@@ -14,7 +14,6 @@ class Bonus (pygame.sprite.Sprite):
         self.rect.x = x - 18
         self.x = x
         self.rect.y = y
-        self.rect.y = 200
         self.different = 2
 
     #Chute des bonus et verification du type de bonus
