@@ -1,5 +1,6 @@
 import pygame
 import random
+import os
 from barre import Barre
 from balle import Balle
 from brique import Brick, Wall
@@ -34,17 +35,17 @@ class Game:
     def spawn_bonus(self, x, y):
         self.choix = random.randint(0,2)
         if self.choix == 0:
-            self.image = pygame.image.load('assets/BonusLigne.png')
+            self.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/BonusLigne.png'))
             self.bonus = Bonus(self, x, y,self.image)
             self.all_bonus.append(self.bonus)
             self.bonus.different = 1
         elif self.choix == 1:
-            self.image = pygame.image.load('assets/bonus.png')
+            self.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/bonus.png'))
             self.bonus = Bonus(self, x, y,self.image)
             self.all_bonus.append(self.bonus)
             self.bonus.different = 0
         elif self.choix == 2:
-            self.image = pygame.image.load('assets/malus.png')
+            self.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/malus.png'))
             self.bonus = Bonus(self, x, y,self.image)
             self.all_bonus.append(self.bonus)
             self.bonus.different = 2
@@ -53,16 +54,20 @@ class Game:
         return pygame.sprite.collide_rect(sprite1, sprite2)
 
     def loose(self):
-        self.button_1 = pygame.Rect(50, 100 , 200 , 50)
-        self.button_2 = pygame.Rect(50, 200 , 200 , 50)
-        self.rectangle_blanc = pygame.Rect(0, 0, 500, 500)
-        self.option = pygame.image.load('assets/restart.png')
+        self.button_1 = pygame.Rect(440, 250 , 200 , 50)
+        self.button_2 = pygame.Rect(440, 350, 200 , 50)
+        self.rectangle = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/gameover.png'))
+        self.rectangle = pygame.transform.scale(self.rectangle, (500,500))
+        self.rectangles = self.rectangle.get_rect()
+        self.rectangles.x = 280
+        self.rectangles.y = 50
+        self.option = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/restart.png'))
         self.option = pygame.transform.scale(self.option , (200,50 ))
         self.options = self.option.get_rect()
-        self.options.x = 50
-        self.options.y = 100
-        self.exit = pygame.image.load('assets/exit.jpg')
+        self.options.x = 430
+        self.options.y = 250
+        self.exit = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/exit.jpg'))
         self.exit = pygame.transform.scale(self.exit, (200,50))
         self.exits = self.option.get_rect()
-        self.exits.x = 50
-        self.exits.y = 200         
+        self.exits.x = 430
+        self.exits.y = 350        

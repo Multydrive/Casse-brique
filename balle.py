@@ -1,10 +1,10 @@
 import pygame
-from brique import *
+import os
 
 class Balle(pygame.sprite.Sprite):
     def __init__(self, game):
         self.game = game
-        self.image = pygame.image.load('assets/virus.png')
+        self.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/virus.png'))
         self.image = pygame.transform.rotozoom(self.image, 0, 0.08)
         self.rect = self.image.get_rect()
         self.rect.x = self.game.barre.rect.x + self.rect.width/2

@@ -1,17 +1,14 @@
 import pygame
 import random
+import os
 class Brick(pygame.sprite.Sprite):
     def __init__(self, position: tuple,pv,type):
         pygame.sprite.Sprite.__init__(self)
-        self.image        = pygame.image.load('assets/bleu.jpg')
+        self.image        = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/bleu.jpg'))
         self.rect         = self.image.get_rect()
         self.rect.topleft = position
         self.pv_brique = pv
         self.type =type
-        """self.fissure1 = pygame.image.load('assets/fissure1.jpg')
-        self.figure1s = self.fissure1.get_rect()
-        self.fissure1s = pygame.transform.rotozoom(self.image, 90, 1)
-        self.figure1s.topleft = self.rect.topleft"""
        
 
 class Wall(pygame.sprite.Sprite):
@@ -39,21 +36,21 @@ class Wall(pygame.sprite.Sprite):
 
             if choix == 0:
                 brick = Brick((self.pos_x, self.pos_y),1,1)
-                brick.image = pygame.image.load('assets/bleu.jpg')
+                brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/bleu.jpg'))
                 self.wall.append(brick)
             elif choix == 1:
                 brick = Brick((self.pos_x, self.pos_y),2,2)
-                brick.image = pygame.image.load('assets/vert.jpg')
+                brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/vert.jpg'))
                 self.wall.append(brick)
                 self.pv_brique = 2
             elif choix == 2:
                 brick = Brick((self.pos_x, self.pos_y),3,3)
-                brick.image = pygame.image.load('assets/rouge.jpg')
+                brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/rouge.jpg'))
                 self.wall.append(brick)
                 self.pv_brique=2
             elif choix == 3:
                 brick = Brick((self.pos_x, self.pos_y),4,4)
-                brick.image = pygame.image.load('assets/us.jpg')
+                brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/us.jpg'))
                 self.wall.append(brick)
                 self.pv_brique = 2
             elif choix == 4:
@@ -79,16 +76,16 @@ class Wall(pygame.sprite.Sprite):
         elif brick.pv_brique >0:
                 if brick.type  ==  2 :  
                     if brick.pv_brique == 1:
-                        brick.image = pygame.image.load('assets/vert.fissuré1.png')
+                        brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/vert.fissuré1.png'))
                 elif brick.type == 3 :
                     if brick.pv_brique == 2:
-                        brick.image = pygame.image.load('assets/rouge.fissuré1.png')
+                        brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/rouge.fissuré1.png'))
                     elif brick.pv_brique == 1:
-                        brick.image = pygame.image.load('assets/rouge.fissuré2.png')
+                        brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/rouge.fissuré2.png'))
                 elif brick.type == 4:
                     if brick.pv_brique == 3:
-                        brick.image = pygame.image.load('assets/us.fissuré1.png')
+                        brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/us.fissuré1.png'))
                     elif brick.pv_brique == 2:
-                        brick.image = pygame.image.load('assets/us.fissuré2.png')
+                        brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/us.fissuré2.png'))
                     elif brick.pv_brique == 1:
-                        brick.image = pygame.image.load('assets/us.fissuré3.png')
+                        brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/us.fissuré3.png'))

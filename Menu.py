@@ -25,7 +25,7 @@ class Start_Menu():
         clock = pygame.time.Clock()
         FPS=30
 
-        font = "assets/Retro.ttf"
+        font = os.path.join(os.path.dirname(__file__),"assets/Retro.ttf")
 
         #Resolution
         screen_width=1040
@@ -53,7 +53,7 @@ class Start_Menu():
                             quit()
 
             # Affichage menu
-            bg = pygame.image.load('assets/wallpaper.jpg')
+            bg = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/wallpaper.jpg'))
             screen.blit(bg, (0,0))
             title=Start_Menu().text_format("Plague-Brique", font, 90, (255, 0, 0))
             if selected=="start":

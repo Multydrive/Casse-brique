@@ -1,4 +1,5 @@
 import pygame
+import os
 from game import Game
 from pygame.locals import *
 
@@ -15,7 +16,7 @@ class Second():
         screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
         #importer l'arrière plan
-        background = pygame.image.load('assets/bg.jpg')
+        background = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/bg.jpg'))
         #charger notre jeu
         game = Game()
 
@@ -36,7 +37,7 @@ class Second():
         
             temps+=1/60
             tps=str("%02d mn %02d sec %02d" % (int(temps)//60, int(temps)%60, (temps*100)%100))
-            font = "assets/DS-DIGI.TTF"
+            font = os.path.join(os.path.dirname(__file__),"assets/DS-DIGI.TTF")
             chronos= Second().text_format(tps, font, 20, (0, 0, 0))
     
             #Second().end_menu(game.points, tps, font, screen)
@@ -57,8 +58,8 @@ class Second():
                 click = False
                 game.loose()                
                 while turning:                 
-                    pygame.draw.rect(screen,(255,255,255), game.rectangle_blanc)
-                    pygame.draw.rect(screen, (255,255,255), game.button_1)
+                    screen.blit(game.rectangle,game.rectangles)
+                    pygame.draw.rect(screen, (0,0,0), game.button_1)
                     pygame.draw.rect(screen, (255,0,0), game.button_2)
                     screen.blit(game.option, game.options)
                     screen.blit(game.exit, game.exits)
@@ -145,11 +146,11 @@ class Second():
                     if event.key == pygame.K_SPACE:
                         game.balle.fixe = 0
                     if event.key == pygame.K_ESCAPE:
-                        escape = pygame.image.load('assets/escape.png')
+                        escape = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/escape.png'))
                         escape = pygame.transform.scale(escape, (300,50 ))
                         escapes = escape.get_rect()
-                        escapes.x = 540
-                        escapes.y = 360
+                        escapes.x = 380
+                        escapes.y = 340
                         pose = True
                         while pose:
                             screen.blit(escape,escapes)
@@ -174,11 +175,11 @@ class Second():
         newText=newFont.render(message, 0, textColor)
         return newText
 
-    def end_menu(self, point, tps, font, screen):
+    """def end_menu(self, point, tps, font, screen):
         score_go= Second().text_format("SCORE : "+ str(point), font, 50, (0, 0, 0))
         chronos_go= Second().text_format("TEMPS : " + str(tps), font, 50, (0, 0, 0))
         again_go= Second().text_format("Pour continuer appuyer sur espace", font, 50, (0 ,0 ,0))
-        bg_go = pygame.image.load('assets/wallpaper.jpg')
+        bg_go = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/wallpaper.jpg'))
 
         score_go_rect=score_go.get_rect()
         chronos_go_rect=chronos_go.get_rect()
@@ -187,4 +188,4 @@ class Second():
         screen.blit(bg_go,(0,0))
         screen.blit(score_go,(int(1040/2) - int((score_go_rect[2]/2)),260))
         screen.blit(chronos_go,(int(1040/2) - int((chronos_go_rect[2]/2)),360))
-        screen.blit(again_go,(int(1040/2) - int((again_go_rect[2]/2)),460))
+        screen.blit(again_go,(int(1040/2) - int((again_go_rect[2]/2)),460))"""
