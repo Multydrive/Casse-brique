@@ -76,6 +76,7 @@ class Second():
                         if game.button_1.collidepoint((mx, my)):
                             del game
                             game = Game()
+                            temps=0
                             click=False
                             turning = False    
                         elif game.button_2.collidepoint((mx, my)):
@@ -106,8 +107,15 @@ class Second():
             #Mur vide
             i = len(game.wall1.wall)
             if i == 0:
+                envoie += 1
                 del game.wall1
                 game.spawn_mur()
+                envoie_bis = envoie
+                while envoie_bis > 0:
+                    game.balle.vit +=1
+                    game.barre.velocity += 0.5
+                    envoie_bis -= 1
+
             
 
             #verifier si le joueur veut aller à droite ou a gauche

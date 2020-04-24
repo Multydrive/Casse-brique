@@ -48,7 +48,7 @@ class Balle(pygame.sprite.Sprite):
                 elif self.rect.y - brick.rect.y - brick.rect.height < 0 and self.rect.y - brick.rect.y - brick.rect.height > -20:
                     self.velocityY = self.vit
                 self.game.wall1.destruction_brique(brick)
-                self.game.spawn_bonus(brick.rect.x, brick.rect.y)
+                
 
 
         #touche la gauche

@@ -32,7 +32,7 @@ class Game:
         
 
     def spawn_bonus(self, x, y):
-        self.choix = random.randint(0,8)
+        self.choix = random.randint(0,2)
         if self.choix == 0:
             self.image = pygame.image.load('assets/BonusLigne.png')
             self.bonus = Bonus(self, x, y,self.image)
