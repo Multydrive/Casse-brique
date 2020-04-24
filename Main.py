@@ -128,13 +128,10 @@ class Second():
                     game.barre.velocity += 1
                 if game.wall1.randomMin < 5:
                     game.wall1.randomMin += 1
-                    print(game.wall1.randomMin)
                 elif game.wall1.randomMin < 8:
                     game.wall1.randomMin += 1
-                    print(game.wall1.randomMin)
                 elif game.wall1.randomMin >= 8:
                     game.wall1.randomMax = 10
-                    print(game.wall1.randomMin)
 
 
             #verifier si le joueur veut aller à droite ou a gauche
@@ -235,10 +232,8 @@ class Second():
             print("I don't understand what you typed.")
         # See if we have a new high score
         if current_score > high_score:
-            print("Yea! New high score!")
             Second().save_high_score(current_score)
-        else:
-            print("Better luck next time.")
+
 
 
     """def end_menu(self, point, tps, font, screen):

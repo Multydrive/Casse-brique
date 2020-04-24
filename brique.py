@@ -9,7 +9,7 @@ class Brick(pygame.sprite.Sprite):
         self.rect.topleft = position
         self.pv_brique = pv
         self.type =type
-       
+
 
 class Wall(pygame.sprite.Sprite):
     def __init__(self, game,randomMin):
@@ -65,8 +65,8 @@ class Wall(pygame.sprite.Sprite):
         brick.pv_brique -= 1
         if brick.pv_brique == 0:
             if brick.type== 1:
-               self.game.points += 10 
-            elif brick.type  ==  2 : 
+               self.game.points += 10
+            elif brick.type  ==  2 :
                 self.game.points += 20
             elif brick.type == 3 :
                 self.game.points += 35
@@ -74,10 +74,9 @@ class Wall(pygame.sprite.Sprite):
                 self.game.points += 50
             self.game.spawn_bonus(brick.rect.x, brick.rect.y)
             self.wall.remove(brick)
-            print("ok")
-            
+
         elif brick.pv_brique >0:
-                if brick.type  ==  2 :  
+                if brick.type  ==  2 :
                     if brick.pv_brique == 1:
                         brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/vert.fissuré1.png'))
                 elif brick.type == 3 :
