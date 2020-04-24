@@ -57,11 +57,11 @@ class Start_Menu():
             screen.blit(bg, (0,0))
             title=Start_Menu().text_format("Plague-Brique", font, 90, (255, 0, 0))
             if selected=="start":
-                text_start=Start_Menu().text_format("START", font, 75, (239, 216, 7))
+                text_start=Start_Menu().text_format("START", font, 75, (255, 0, 0))
             else:
                 text_start =Start_Menu().text_format("START", font, 75, (0, 0, 0))
             if selected=="quit":
-                text_quit=Start_Menu().text_format("QUIT", font, 75, (239, 216, 7))
+                text_quit=Start_Menu().text_format("QUIT", font, 75, (255, 0, 0))
             else:
                 text_quit = Start_Menu().text_format("QUIT", font, 75, (0, 0, 0))
 
