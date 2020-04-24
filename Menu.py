@@ -15,7 +15,6 @@ class Start_Menu():
     def text_format(self,message, textFont, textSize, textColor):
         newFont=pygame.font.Font(textFont, textSize)
         newText=newFont.render(message, 0, textColor)
-
         return newText
 
     # Main Menu
@@ -30,7 +29,7 @@ class Start_Menu():
         #Resolution
         screen_width=1040
         screen_height=720
-
+        #Creation menu
         screen=pygame.display.set_mode((screen_width, screen_height))
         menu=True
         selected="start"

@@ -3,6 +3,7 @@ import os
 
 class Barre(pygame.sprite.Sprite):
 
+    #Constructeur de la barre
     def __init__(self):
         super().__init__()
         self.velocity = 10
@@ -11,8 +12,10 @@ class Barre(pygame.sprite.Sprite):
         self.rect.x = 500
         self.rect.y = 700
 
+    #Deplacement a droite
     def move_right(self):
         self.rect.x += self.velocity
 
+    #Deplacement a gauche
     def move_left(self):
         self.rect.x -= self.velocity

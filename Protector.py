@@ -2,7 +2,8 @@ import pygame
 import os
 
 class Protector(pygame.sprite.Sprite):
-
+    
+    #Constructeur de la barre protectrice
     def __init__(self):
         super().__init__()
         self.health = 3
@@ -13,8 +14,10 @@ class Protector(pygame.sprite.Sprite):
         self.rect.x = 600
         self.rect.y = 570
 
+    #Mouvement vers la droite
     def move_right(self):
         self.rect.x += self.velocity
 
+    #Mouvement vers la gauche
     def move_left(self):
         self.rect.x -= self.velocity
