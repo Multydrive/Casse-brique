@@ -9,7 +9,7 @@ class Balle(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = self.game.barre.rect.x + self.rect.width/2
         self.rect.y = self.game.barre.rect.y - self.rect.height
-        self.vit = 4
+        self.vit = 5
         self.velocityX = - self.vit
         self.velocityY = - self.vit
         self.origin_image = self.image

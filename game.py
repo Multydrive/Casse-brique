@@ -16,7 +16,7 @@ class Game:
         self.pressed = {}
         self.all_balles = []
         self.Protector = protector()
-        self.balle_vie = 1
+        self.balle_vie = 3
         self.all_bonus = []
         self.points = 0
         self.spawn_balle()

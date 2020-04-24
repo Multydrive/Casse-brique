@@ -113,9 +113,18 @@ class Second():
                 game.spawn_mur()
                 envoie_bis = envoie
                 while envoie_bis > 0:
-                    game.balle.vit +=1
-                    game.barre.velocity += 0.5
-                    envoie_bis -= 1
+                    if game.balle.vit < 10 and game.barre.velocity < 15:
+                        game.balle.vit +=1
+                        game.barre.velocity += 1
+                        envoie_bis -= 1
+                    if game.wall1.randomMin < 5:
+                        game.wall1.randomMin += 1
+                    elif game.wall1.randomMin < 8:
+                        game.wall1.randomMin += 1
+                    elif game.wall1.randomMin >= 8:
+                        game.wall1.randomMax = 10
+
+
 
             
 
