@@ -17,7 +17,7 @@ class Bonus (pygame.sprite.Sprite):
 
     def fall(self):
         self.rect.y += self.velocity
-        if self.game.check_collision(self, self.game.Protector):
+        if self.game.check_collision(self, self.game.protector):
             if self.different == 1:
                 self.bonus_ligne()
             elif self.different == 0:

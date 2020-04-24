@@ -4,7 +4,7 @@ import os
 from barre import Barre
 from balle import Balle
 from brique import Brick, Wall
-from Protector import protector
+from Protector import Protector
 from bonus import Bonus
 
 
@@ -15,7 +15,7 @@ class Game:
         self.barre = Barre()
         self.pressed = {}
         self.all_balles = []
-        self.Protector = protector()
+        self.protector = Protector()
         self.balle_vie = 3
         self.all_bonus = []
         self.points = 0

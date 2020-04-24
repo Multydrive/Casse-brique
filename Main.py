@@ -95,7 +95,7 @@ class Second():
                 screen.blit(balle.image, balle.rect)
 
             #Appliquer l'image de mon joueur2
-            screen.blit(game.Protector.image, game.Protector.rect)
+            screen.blit(game.protector.image, game.protector.rect)
 
             #Appliquer l'image des bonus
             for bonus in game.all_bonus:
@@ -137,10 +137,10 @@ class Second():
                 game.barre.move_left()
 
             #verifier si le second joueur veut aller à droite ou a gauche
-            if game.pressed.get(pygame.K_f) and game.Protector.rect.x + game.Protector.rect.width < screen.get_width()  and not game.pressed.get(pygame.K_s):
-                game.Protector.move_right()
-            elif game.pressed.get(pygame.K_s) and game.Protector.rect.x > 0  and not game.pressed.get(pygame.K_f):
-                game.Protector.move_left()
+            if game.pressed.get(pygame.K_f) and game.protector.rect.x + game.protector.rect.width < screen.get_width()  and not game.pressed.get(pygame.K_s):
+                game.protector.move_right()
+            elif game.pressed.get(pygame.K_s) and game.protector.rect.x > 0  and not game.pressed.get(pygame.K_f):
+                game.protector.move_left()
 
             #mettre a jour l'écran
             pygame.display.flip()

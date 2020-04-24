@@ -1,5 +1,6 @@
 import pygame
 import os
+import random
 
 class Balle(pygame.sprite.Sprite):
     def __init__(self, game,vit):
@@ -10,8 +11,9 @@ class Balle(pygame.sprite.Sprite):
         self.rect.x = self.game.barre.rect.x + self.rect.width/2
         self.rect.y = self.game.barre.rect.y - self.rect.height
         self.vit = vit
+        self.choix = random.randint(0,1)
+        self.velocityY =  self.vit
         self.velocityX = - self.vit
-        self.velocityY = - self.vit
         self.origin_image = self.image
         self.angle = 0
         self.fixe = 1

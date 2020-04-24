@@ -1,7 +1,7 @@
 import pygame
 import os
 
-class protector(pygame.sprite.Sprite):
+class Protector(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
