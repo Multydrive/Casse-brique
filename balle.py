@@ -2,14 +2,14 @@ import pygame
 import os
 
 class Balle(pygame.sprite.Sprite):
-    def __init__(self, game):
+    def __init__(self, game,vit):
         self.game = game
         self.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/virus.png'))
         self.image = pygame.transform.rotozoom(self.image, 0, 0.08)
         self.rect = self.image.get_rect()
         self.rect.x = self.game.barre.rect.x + self.rect.width/2
         self.rect.y = self.game.barre.rect.y - self.rect.height
-        self.vit = 5
+        self.vit = vit
         self.velocityX = - self.vit
         self.velocityY = - self.vit
         self.origin_image = self.image
@@ -47,9 +47,7 @@ class Balle(pygame.sprite.Sprite):
                 #balle vient d'en
                 elif self.rect.y - brick.rect.y - brick.rect.height < 0 and self.rect.y - brick.rect.y - brick.rect.height > -20:
                     self.velocityY = self.vit
-                self.game.wall1.destruction_brique(brick)
-                
-
+                self.game.wall1.destruction_brique(brick)  
 
         #touche la gauche
         if self.rect.x < 0:
@@ -59,9 +57,10 @@ class Balle(pygame.sprite.Sprite):
             self.velocityX = - self.vit
         # touche le bas
         elif self.rect.y > 670:
+            self.vit_actuelle = self.vit
             self.game.all_balles.remove(self)
             self.game.balle_vie -= 1
-            self.game.spawn_balle()
+            self.game.spawn_balle(self.vit_actuelle)
             self.fixe = 1
         #touche la barre principale
         elif self.game.check_collision(self,self.game.barre):

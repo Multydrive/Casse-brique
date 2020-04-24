@@ -19,21 +19,22 @@ class Game:
         self.balle_vie = 3
         self.all_bonus = []
         self.points = 0
-        self.spawn_balle()
+        self.vit = 5
+        self.spawn_balle(self.vit)
         self.spawn_mur()
         self.click = False
         #self.type_bonus = Bonus(self)
 
-    def spawn_balle(self):
+    def spawn_balle(self,vit):
         if self.balle_vie > 0:
-            self.balle = Balle(self)
+            self.balle = Balle(self,vit)
             self.all_balles.append(self.balle)
     def spawn_mur(self):
         self.wall1 = Wall(self)
         
 
     def spawn_bonus(self, x, y):
-        self.choix = random.randint(0,2)
+        self.choix = random.randint(0,8)
         if self.choix == 0:
             self.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/BonusLigne.png'))
             self.bonus = Bonus(self, x, y,self.image)

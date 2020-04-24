@@ -37,7 +37,6 @@ class Bonus (pygame.sprite.Sprite):
         if self.game.balle_vie < 99:
             self.game.balle_vie += 1
         else:
-            print("Trop de vie")
             self.game.balle_vie = 99
     
     def malus_vie(self):

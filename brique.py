@@ -26,7 +26,7 @@ class Wall(pygame.sprite.Sprite):
         self.randomMin = 0
         self.randomMax = 11
 
-        for x in range(0, 65):
+        for x in range(0, 5):
             if self.pos_x >= 1040:
                 self.pos_x = 0
                 self.pos_y = self.pos_y + brick.rect.height
@@ -73,8 +73,8 @@ class Wall(pygame.sprite.Sprite):
                 self.game.points += 35
             elif brick.type == 4:
                 self.game.points += 50 
-            self.wall.remove(brick)
             self.game.spawn_bonus(brick.rect.x, brick.rect.y)
+            self.wall.remove(brick)
             
         elif brick.pv_brique >0:
                 if brick.type  ==  2 :  
