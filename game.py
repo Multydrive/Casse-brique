@@ -16,10 +16,10 @@ class Game:
         self.pressed = {}
         self.all_balles = []
         self.protector = Protector()
-        self.balle_vie = 99
+        self.balle_vie = 3
         self.all_bonus = []
         self.points = 0
-        self.vit = 10
+        self.vit = 5
         self.randomMin = 0
         self.spawn_balle(self.vit)
         self.spawn_mur(self.randomMin)
@@ -33,7 +33,7 @@ class Game:
     def spawn_mur(self,randomMin):
         self.randomMin = randomMin
         self.wall1 = Wall(self,self.randomMin)
-        
+
 
     def spawn_bonus(self, x, y):
         self.choix = random.randint(0,8)
@@ -73,4 +73,4 @@ class Game:
         self.exit = pygame.transform.scale(self.exit, (200,50))
         self.exits = self.option.get_rect()
         self.exits.x = 430
-        self.exits.y = 350        
+        self.exits.y = 350
