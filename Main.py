@@ -202,7 +202,7 @@ class Second():
 
             #Chute des bonus
             for bonus in game.all_bonus:
-                bonus.fall
+                bonus.fall()
 
     #Creation d'un format general de text
     def text_format(self, message, textFont, textSize, textColor):
