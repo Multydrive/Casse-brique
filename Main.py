@@ -7,7 +7,6 @@ class Second():
     pygame.init()
     def play(self):
         # generer la fenetre
-        pause = True
         envoie = 0
         pygame.display.set_caption("Casse-Brique")
         WINDOW_WIDTH  = 1040
@@ -34,12 +33,12 @@ class Second():
                     if event.type==KEYDOWN:
                         if event.key==K_ESCAPE:
                             pause = True"""
-        
+
             temps+=1/60
             tps=str("%02d mn %02d sec %02d" % (int(temps)//60, int(temps)%60, (temps*100)%100))
             font = os.path.join(os.path.dirname(__file__),"assets/DS-DIGI.TTF")
             chronos= Second().text_format(tps, font, 20, (0, 0, 0))
-    
+
             #Second().end_menu(game.points, tps, font, screen)
             #score
             new_points = game.points
@@ -53,14 +52,20 @@ class Second():
             screen.blit(score,(470,5))
             screen.blit(vies,(30,5))
 
+
             if game.balle_vie == 0:
                 turning = True
                 click = False
-                game.loose()                
-                while turning:                 
+                game.loose()
+                while turning:
                     screen.blit(game.rectangle,game.rectangles)
                     pygame.draw.rect(screen, (0,0,0), game.button_1)
-                    pygame.draw.rect(screen, (255,0,0), game.button_2)
+                    pygame.draw.rect(screen, (0,0,0), game.button_2)
+                    Second().check_high_score(game.points)
+                    high_score = Second().get_high_score()
+                    high_score = str(high_score)
+                    shore = Second().text_format("HIGH SCORE : "+ high_score, font, 25, (255, 255, 255))
+                    screen.blit(shore, (470,200))
                     screen.blit(game.option, game.options)
                     screen.blit(game.exit, game.exits)
                     pygame.display.flip()
@@ -79,11 +84,11 @@ class Second():
                             game = Game()
                             temps=0
                             click=False
-                            turning = False    
+                            turning = False
                         elif game.button_2.collidepoint((mx, my)):
                             running= False
-                            click=False 
-                            turning = False 
+                            click=False
+                            turning = False
 
             #Appliquer l'image de mon joueur
             for balle in game.all_balles:
@@ -100,7 +105,7 @@ class Second():
             screen.blit(game.barre.image, game.barre.rect)
             for brick in game.wall1.wall:
                     screen.blit(brick.image,brick.rect)
-                
+
 
             #Déplacer la balle
             for balle in game.all_balles:
@@ -124,9 +129,6 @@ class Second():
                     elif game.wall1.randomMin >= 8:
                         game.wall1.randomMax = 10
 
-
-
-            
 
             #verifier si le joueur veut aller à droite ou a gauche
             if game.pressed.get(pygame.K_RIGHT) and game.barre.rect.x + game.barre.rect.width < screen.get_width() and not game.pressed.get(pygame.K_LEFT):
@@ -169,10 +171,10 @@ class Second():
                                         running = False
                                         pose= False
                                         pygame.quit()
-                                elif event.type == pygame.KEYDOWN:    
+                                elif event.type == pygame.KEYDOWN:
                                     if event.key == pygame.K_ESCAPE:
                                         pose = False
-        
+
                 elif event.type == pygame.KEYUP:
                     game.pressed[event.key] = False
 
@@ -183,6 +185,54 @@ class Second():
         newFont=pygame.font.Font(textFont, textSize)
         newText=newFont.render(message, 0, textColor)
         return newText
+
+    def get_high_score(self):
+        # Default high score
+        high_score = 0
+
+        try:
+            high_score_file = open("high_score.txt", "r")
+            high_score = int(high_score_file.read())
+            high_score_file.close()
+        except IOError:
+            # Error reading file, no high score
+            print("There is no high score yet.")
+        except ValueError:
+            # There's a file there, but we don't understand the number.
+            print("I'm confused. Starting with no high score.")
+
+        return high_score
+
+
+    def save_high_score(self, new_high_score):
+        try:
+            # Write the file to disk
+            high_score_file = open("high_score.txt", "w")
+            high_score_file.write(str(new_high_score))
+            high_score_file.close()
+        except IOError:
+            # Hm, can't write it.
+            print("Unable to save the high score.")
+
+    def check_high_score(self, points ):
+        # Get the high score
+        high_score = Second().get_high_score()
+
+        # Get the score from the current game
+        current_score = 0
+        try:
+            # Ask the user for his/her score
+            current_score = points
+        except ValueError:
+            # Error, can't turn what they typed into a number
+            print("I don't understand what you typed.")
+        # See if we have a new high score
+        if current_score > high_score:
+            print("Yea! New high score!")
+            Second().save_high_score(current_score)
+        else:
+            print("Better luck next time.")
+
 
     """def end_menu(self, point, tps, font, screen):
         score_go= Second().text_format("SCORE : "+ str(point), font, 50, (0, 0, 0))
