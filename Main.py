@@ -23,6 +23,7 @@ class Second():
         clock = pygame.time.Clock()
         fps= 60
         temps=0
+        vitesseT=5
         running = True
         #boucle tant que cette condition est vraie
 
@@ -114,20 +115,26 @@ class Second():
             i = len(game.wall1.wall)
             if i == 0:
                 envoie += 1
+                randomMin = game.wall1.randomMin
                 del game.wall1
-                game.spawn_mur()
-                envoie_bis = envoie
-                while envoie_bis > 0:
-                    if game.balle.vit < 10 and game.barre.velocity < 15:
-                        game.balle.vit +=1
-                        game.barre.velocity += 1
-                        envoie_bis -= 1
-                    if game.wall1.randomMin < 5:
-                        game.wall1.randomMin += 1
-                    elif game.wall1.randomMin < 8:
-                        game.wall1.randomMin += 1
-                    elif game.wall1.randomMin >= 8:
-                        game.wall1.randomMax = 10
+                for balle in game.all_balles:
+                    vitesseT = game.balle.vit
+                    game.all_balles.remove(balle)
+                game.balle.fixe = 1
+                game.spawn_balle(vitesseT)
+                game.spawn_mur(randomMin)
+                if game.balle.vit < 10 and game.barre.velocity < 15:
+                    game.balle.vit +=1
+                    game.barre.velocity += 1
+                if game.wall1.randomMin < 5:
+                    game.wall1.randomMin += 1
+                    print(game.wall1.randomMin)
+                elif game.wall1.randomMin < 8:
+                    game.wall1.randomMin += 1
+                    print(game.wall1.randomMin)
+                elif game.wall1.randomMin >= 8:
+                    game.wall1.randomMax = 10
+                    print(game.wall1.randomMin)
 
 
             #verifier si le joueur veut aller à droite ou a gauche

@@ -16,12 +16,13 @@ class Game:
         self.pressed = {}
         self.all_balles = []
         self.protector = Protector()
-        self.balle_vie = 3
+        self.balle_vie = 99
         self.all_bonus = []
         self.points = 0
-        self.vit = 5
+        self.vit = 10
+        self.randomMin = 0
         self.spawn_balle(self.vit)
-        self.spawn_mur()
+        self.spawn_mur(self.randomMin)
         self.click = False
         #self.type_bonus = Bonus(self)
 
@@ -29,8 +30,9 @@ class Game:
         if self.balle_vie > 0:
             self.balle = Balle(self,vit)
             self.all_balles.append(self.balle)
-    def spawn_mur(self):
-        self.wall1 = Wall(self)
+    def spawn_mur(self,randomMin):
+        self.randomMin = randomMin
+        self.wall1 = Wall(self,self.randomMin)
         
 
     def spawn_bonus(self, x, y):

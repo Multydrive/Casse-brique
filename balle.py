@@ -11,20 +11,27 @@ class Balle(pygame.sprite.Sprite):
         self.rect.x = self.game.barre.rect.x + self.rect.width/2
         self.rect.y = self.game.barre.rect.y - self.rect.height
         self.vit = vit
+        self.velocityY =  - self.vit
         self.choix = random.randint(0,1)
-        self.velocityY =  self.vit
-        self.velocityX = - self.vit
+        """if self.choix == 0:
+            self.velocityX =  self.vit
+        elif self.choix == 1:"""
+        self.velocityX = -self.vit
         self.origin_image = self.image
         self.angle = 0
         self.fixe = 1
+        self.destruction = False
 
 
     def deplacement(self):
         if self.fixe == 0:
-            self.collision_mur_barre()
+            brick = self.collision_mur_barre()
             self.rotate()
             self.rect.x += self.velocityX
             self.rect.y += self.velocityY
+            if self.destruction:
+                self.game.wall1.destruction_brique(brick)
+                self.destruction = False
         elif self.fixe == 1:
             self.rect.x = self.game.barre.rect.x + self.rect.width/2
             self.rect.y = self.game.barre.rect.y - self.rect.height
@@ -35,22 +42,6 @@ class Balle(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=self.rect.center)
 
     def collision_mur_barre(self):
-        for brick in self.game.wall1.wall:
-            if self.game.check_collision(self, brick):
-                 #balle vient de la gauche
-                if  brick.rect.x - self.rect.x - self.rect.width < 0 and brick.rect.x - self.rect.x - self.rect.width > -20 :
-                    self.velocityX = - self.vit
-                #balle vient de la droite
-                elif self.rect.x - brick.rect.x - brick.rect.width < 0 and self.rect.x - brick.rect.x - brick.rect.width > -20:
-                    self.velocityX = self.vit
-                #balle vient d'en haut
-                if brick.rect.y - self.rect.y - self.rect.height < 0 and brick.rect.y - self.rect.y - self.rect.height > -20:
-                    self.velocityY = - self.vit
-                #balle vient d'en
-                elif self.rect.y - brick.rect.y - brick.rect.height < 0 and self.rect.y - brick.rect.y - brick.rect.height > -20:
-                    self.velocityY = self.vit
-                self.game.wall1.destruction_brique(brick)  
-
         #touche la gauche
         if self.rect.x < 0:
             self.velocityX = self.vit
@@ -70,3 +61,20 @@ class Balle(pygame.sprite.Sprite):
         #touche le haut
         elif self.rect.y < 35:
             self.velocityY = self.vit
+
+        for brick in self.game.wall1.wall:
+            if self.game.check_collision(self, brick):
+                self.destruction = True
+                 #balle vient de la gauche
+                if  brick.rect.x - self.rect.x - self.rect.width < 0 and brick.rect.x - self.rect.x - self.rect.width > -20 :
+                    self.velocityX = - self.vit
+                #balle vient de la droite
+                elif self.rect.x - brick.rect.x - brick.rect.width < 0 and self.rect.x - brick.rect.x - brick.rect.width > -20:
+                    self.velocityX = self.vit
+                #balle vient d'en haut
+                if brick.rect.y - self.rect.y - self.rect.height < 0 and brick.rect.y - self.rect.y - self.rect.height > -20:
+                    self.velocityY = - self.vit
+                #balle vient d'en
+                elif self.rect.y - brick.rect.y - brick.rect.height < 0 and self.rect.y - brick.rect.y - brick.rect.height > -20:
+                    self.velocityY = self.vit 
+                return brick

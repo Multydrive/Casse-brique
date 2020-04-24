@@ -12,7 +12,7 @@ class Brick(pygame.sprite.Sprite):
        
 
 class Wall(pygame.sprite.Sprite):
-    def __init__(self, game):
+    def __init__(self, game,randomMin):
         super().__init__()
         self.game = game
         self.i= 0
@@ -22,11 +22,10 @@ class Wall(pygame.sprite.Sprite):
         trou = 0
         self.pos_x = 0
         self.pos_y = 30
-        vide = 11
-        self.randomMin = 0
+        self.randomMin = randomMin
         self.randomMax = 11
 
-        for x in range(0, 5):
+        for x in range(0, 65):
             if self.pos_x >= 1040:
                 self.pos_x = 0
                 self.pos_y = self.pos_y + brick.rect.height
@@ -56,7 +55,7 @@ class Wall(pygame.sprite.Sprite):
                 brick.image = pygame.image.load(os.path.join(os.path.dirname(__file__),'assets/us.jpg'))
                 self.wall.append(brick)
                 self.pv_brique = 2
-            elif choix == vide:
+            elif choix == 11:
                 trou += 1
                 pass
 
@@ -72,9 +71,10 @@ class Wall(pygame.sprite.Sprite):
             elif brick.type == 3 :
                 self.game.points += 35
             elif brick.type == 4:
-                self.game.points += 50 
+                self.game.points += 50
             self.game.spawn_bonus(brick.rect.x, brick.rect.y)
             self.wall.remove(brick)
+            print("ok")
             
         elif brick.pv_brique >0:
                 if brick.type  ==  2 :  
